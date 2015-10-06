@@ -1,0 +1,16 @@
+<h1>hola mundo</h1>
+
+<div class="media" ng-repeat="tweet in tweets">
+	  <div class="media-left">
+	    <a href="#">
+	      <img class="media-object" ng-src="{{tweet.user.profile_image_url}}" alt="image">
+	    </a>
+	  </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{tweet.user.name}}</h4>
+  	    <p>{{tweet.text}}</p>
+  		    <a href= "#/" alt="retweet">
+  		  		<span class="glyphicon glyphicon-retweet" aria-hidden="true"></span>
+  			 </a>
+    </div>	
+  </div>
