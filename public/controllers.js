@@ -11,23 +11,30 @@ app.controller('tlCtrl', ['$scope', '$http', 'ajax', function ($scope, $http, AJ
 }]);
 
 
-app.controller('tweetCtrl', ['$scope', 'ajax', function ($scope, AJAX) {
-  var onetweet = function () {
-        AJAX.query({
-          url: 'http://localhost:3000/timeline',
-          }, function (data) { // callback
+app.controller('tweetCtrl', ['$scope', '$routeParams', 'ajax', function ($scope, $routeParams, AJAX){
+   var timeline = (function () {
+    $scope.loading = true;
+    console.log('we are inside the function inside de var timeline = function ()');
+    AJAX.query({
+    url: 'http://localhost:3000/timeline',
+        }, function (data) { // callback
           $scope.loading = false;
-
-          if (data.results.length) {
-            displaytweet(data.results[0].user);
-          }
+              console.log('We are in the function inside de ajax.querydata= ');
+              console.log('data= ', data);
+          if (data) {
+            /*$scope.timeline = data;*/
+            console.log('we entry to the if');
+            $scope.timeline= data;
+            console.log('timeline =', timeline);
+            console.log('$scope.timeline =', $scope.timeline);
+    
+            }
         });
-      },
-
-      displaytweet = function (res) {
-        $scope.desc = res.user.description
-      };
-$scope.onetweet = onetweet;
+  })();
+  console.log('that is all folks');
+  console.log('after de definition timeline=', timeline); 
+  console.log('we are outside de var, and the $scope.timeline= ' , $scope.timeline);
 }]);
-			
+
+
 
