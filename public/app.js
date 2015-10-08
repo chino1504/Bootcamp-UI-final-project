@@ -6,7 +6,7 @@ app.config(function($routeProvider) {
       templateUrl: '/partials/timeline.html',
       controller: 'tlCtrl'
     })
-    .when('/tweet', {
+    .when('/tweet/:id', {
       templateUrl: '/partials/tweet.html',
       controller: 'tweetCtrl'
     })

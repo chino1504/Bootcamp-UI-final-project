@@ -1,5 +1,13 @@
-<body>
-<div>
-	<h1>{{user.description}}</h1>
-</div>
-</body>
+<ul class="row  list-unstyled">
+	<div id="tweetDetails" class="col-md-12">
+		<img id="userImage" ng-src="{{twitt.user.profile_image_url_https}}">
+		<h4><strong> {{twitt.user.name}} </strong></h4>
+		<h5>@{{twitt.user.screen_name}}</h5>
+		<h1> {{twitt.text}} </h1><br>
+		<img id="mediaImage" ng-src="{{twitt.entities.media[0].media_url}}" ng-show="{{twitt.entities.media[0]}}">
+		<h5> {{twitt.aDate | date:'HH:mm - d MMM. y'}} </h5>
+		<div>
+			<h5> <strong>{{twitt.retweet_count}}</strong> Retweets | <strong> {{twitt.favorite_count}} </strong> Favorites</h5>
+		</div>
+	</div>
+</ul>

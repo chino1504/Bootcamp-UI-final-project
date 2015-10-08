@@ -9,7 +9,7 @@
     <div class="media-body">
       <h4 class="media-heading">{{tweet.user.name}}</h4>
   	    <p>{{tweet.text}}</p>
-  		    <a href= "#/" alt="retweet">
+  		    <a id="linkTweetDetails" ng-href="#/tweet/{{tweet.id}}">Show tweet details</a>
   		  		<span class="glyphicon glyphicon-retweet" aria-hidden="true"></span>
   			 </a>
     </div>	
