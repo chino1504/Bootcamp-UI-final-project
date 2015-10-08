@@ -12,8 +12,7 @@ app.controller('tlCtrl', ['$scope', '$http', 'ajax', function ($scope, $http, AJ
 
 
 app.controller('tweetCtrl',['$scope', '$routeParams', 'ajax', function ($scope, $routeParams, AJAX){
-  console.log('controller tweetCtrl------------------------------');
-      
+        
     AJAX.query({
       url: 'http://localhost:3000/timeline',
         }, function (data) { // callback
@@ -37,17 +36,20 @@ app.controller('tweetCtrl',['$scope', '$routeParams', 'ajax', function ($scope, 
 
 app.controller('trendCtrl', ['$scope', '$routeParams', 'ajax', 'geo', function($scope, $routeParams, AJAX, geo) {
 
-  AJAX.query({
-    url: 'http://localhost:3000/trends?id=' + geo.woeid
-      }, function (data) {
-         console.log(data);
-        $scope.woeid = $routeParams.woeid;
-        $scope.trend = data;
-        console.log(trend);
-    
-      
+  geo.getLocation(function (pos){
+    console.log("Estás en (" + pos.coords.latitude + "," + pos.coords.longitude +")");
 
-    });
+  })
+  geo.getMyPlace({latitude:-31.420083299999995,longitude:-64.1887761}, function (res) {
+    console.log(res.data);
+  })
+
+  geo.getTrends(23424747, function (res) {
+    console.log(res.data);
+    $scope.mytrends = res.data[0];
+
+  })
+
 
 }]);
 

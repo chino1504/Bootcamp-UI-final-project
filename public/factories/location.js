@@ -1,25 +1,42 @@
 app.factory('geo', ['$http', function ($http) {
 
-	navigator.geolocation.getCurrentPosition(mostrarPosicion);
-  	function mostrarPosicion(pos) {
-  	alert("Estás en (" + pos.coords.latitude + "," + pos.coords.longitude +")");
+	function getLocation(callback) {
+		navigator.geolocation.getCurrentPosition(callback);
+  		
+  	}
 
-
-	 getMyPlace = function(coord, latitude, longitude, cb) {
-        $http({
-            method: 'GET',
-            url: 'http://localhost:3000/myplace?lat=' + pos.coords.latitude + '&long=' + pos.coords.longitude
-
+	function getMyPlace(coords, callback) {
+		console.log(coords);
+        $http.get('http://localhost:3000/myplace', {
+            params: {
+            	lat: coords.latitude,
+            	long: coords.longitude
+            } 
         }).then(function (res) { // success
-          cb(res);
-        }, function (res) { // error
+          		callback(res);
+ 		}, function (res) { // error
 
-        });
-   };
+       	});
+    };
 
+	function getTrends(id, callback) {
+		console.log(id);
+        $http.get('http://localhost:3000/trends', {
+            params: {
+            	id: id
+            } 
+        }).then(function (res) { // success
+          		callback(res);
+ 		}, function (res) { // error
+
+       	});
+    };
+    
     return {
        
-        getMyPlace: getMyPlace
+        getMyPlace: getMyPlace,
+        getLocation: getLocation,
+        getTrends: getTrends
         
     };
 }]);
