@@ -1,4 +1,4 @@
-app.controller('tlCtrl', ['$scope', '$http', 'ajax', function ($scope, $http, AJAX) {
+app.controller('tlCtrl', ['$scope', '$http', function ($scope, $http) {
     
     $http.get('http://localhost:3000/timeline', {
         params: {
