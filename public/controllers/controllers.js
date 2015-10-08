@@ -21,25 +21,33 @@ app.controller('tweetCtrl',['$scope', '$routeParams', 'ajax', function ($scope, 
           if (data) {
             
             $scope.id = $routeParams.id;
-            console.log('data =' , data);
-            console.log('$scope.timeline =' , $scope.timeline);
-            console.log('$routeParams.id =' , $routeParams.id);
-            console.log('data.length =' , data.length);
+            
             for (var i = 0; i < data.length; i++) {
-              console.log('estoy dentro del for');
-              console.log(' $routeParams.id=', $routeParams.id );
-              console.log('data[i].id = ', data[i].id);
+             
               if (data[i].id == $routeParams.id) {
-                console.log('estoy dentro del if');
-                window.alert('adentro del if');
-                console.log('we are inside de if data[i].id === $routeParams !!!!');
-                $scope.twitt = data[i];
-                console.log(' data[i]=', data[i]);
-                console.log(' i=',i );
                 
+                
+                $scope.twitt = data[i];
+                               
               }};
             }
           });
   
+}]);
+
+app.controller('trendCtrl', ['$scope', '$routeParams', 'ajax', 'geo', function($scope, $routeParams, AJAX, geo) {
+
+  AJAX.query({
+    url: 'http://localhost:3000/trends?id=' + geo.woeid
+      }, function (data) {
+         console.log(data);
+        $scope.woeid = $routeParams.woeid;
+        $scope.trend = data;
+        console.log(trend);
+    
+      
+
+    });
+
 }]);
 

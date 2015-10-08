@@ -10,6 +10,10 @@ app.config(function($routeProvider) {
       templateUrl: '/partials/tweet.html',
       controller: 'tweetCtrl'
     })
+    .when('/trends/:woeid', {
+      templateUrl: '/partials/trends.html',
+      controller: 'trendCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });
