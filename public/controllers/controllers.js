@@ -20,11 +20,8 @@ app.controller('tweetCtrl',['$scope', '$routeParams', 'ajax', function ($scope, 
           if (data) {
             
             $scope.id = $routeParams.id;
-            
             for (var i = 0; i < data.length; i++) {
-             
-              if (data[i].id == $routeParams.id) {
-                
+              if (data[i].id == $routeParams.id) {                
                 
                 $scope.twitt = data[i];
                                
@@ -41,12 +38,14 @@ app.controller('trendCtrl', ['$scope', '$routeParams', 'ajax', 'geo', function($
 
   })
   geo.getMyPlace({latitude:-31.420083299999995,longitude:-64.1887761}, function (res) {
-    console.log(res.data);
+    console.log("resultado del calback",res.data);
+  }).then(function (res) {
+    console.log("resultado de la promesa",res);
   })
 
-  geo.getTrends(23424747, function (res) {
-    console.log(res.data);
-    $scope.mytrends = res.data[0];
+  geo.getTrends(23424747).then(function (trends) {
+    console.log(trends);
+    $scope.trends = trends;
 
   })
 
